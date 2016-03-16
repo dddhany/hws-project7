@@ -11,13 +11,19 @@ import UIKit
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
-    var objects = [AnyObject]()
+    var objects = [[String: String]]()
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let urlString = "https://api.whitehouse.gov/v1/petitions.json?limit=100"
+        let urlString: String
+        
+        if navigationController?.tabBarItem.tag == 0 {
+            urlString = "https://api.whitehouse.gov/v1/petitions.json?limit=100"
+        } else {
+            urlString = "https://api.whitehouse.gov/v1/petitions.json?signatureCountFloor=10000&limit=100"
+        }
         
         if let url = NSURL(string: urlString) {
             if let data = try? NSData(contentsOfURL: url, options: []) {
@@ -25,9 +31,21 @@ class MasterViewController: UITableViewController {
                 
                 if json["metadata"]["responseInfo"]["status"].intValue == 200 {
                     parseJSON(json)
+                } else {
+                    showError()
                 }
+            } else {
+                showError()
             }
+        } else {
+            showError()
         }
+    }
+    
+    func showError() {
+        let ac = UIAlertController(title: "Loading error", message: "There was a problem loading the feed; please check your connection and try again.", preferredStyle: .Alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        presentViewController(ac, animated: true, completion: nil)
     }
     
     func parseJSON(json: JSON) {
@@ -80,7 +98,7 @@ class MasterViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
 
-        let object = objects[indexPath.row] as! NSDate
+        let object = objects[indexPath.row]
         cell.textLabel!.text = object["title"]
         cell.detailTextLabel!.text = object["body"]
         return cell
