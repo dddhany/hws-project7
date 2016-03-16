@@ -13,6 +13,7 @@
 		E44D35471C95137D00C5809F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E44D35451C95137D00C5809F /* Main.storyboard */; };
 		E44D35491C95137D00C5809F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E44D35481C95137D00C5809F /* Assets.xcassets */; };
 		E44D354C1C95137D00C5809F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E44D354A1C95137D00C5809F /* LaunchScreen.storyboard */; };
+		E44D35541C99ADA500C5809F /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44D35531C99ADA500C5809F /* SwiftyJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E44D35481C95137D00C5809F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E44D354B1C95137D00C5809F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E44D354D1C95137E00C5809F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E44D35531C99ADA500C5809F /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				E44D35481C95137D00C5809F /* Assets.xcassets */,
 				E44D354A1C95137D00C5809F /* LaunchScreen.storyboard */,
 				E44D354D1C95137E00C5809F /* Info.plist */,
+				E44D35531C99ADA500C5809F /* SwiftyJSON.swift */,
 			);
 			path = project7;
 			sourceTree = "<group>";
@@ -142,6 +145,7 @@
 				E44D35441C95137D00C5809F /* DetailViewController.swift in Sources */,
 				E44D35421C95137D00C5809F /* MasterViewController.swift in Sources */,
 				E44D35401C95137D00C5809F /* AppDelegate.swift in Sources */,
+				E44D35541C99ADA500C5809F /* SwiftyJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +299,7 @@
 				E44D35521C95137E00C5809F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

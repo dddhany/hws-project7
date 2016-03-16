@@ -16,7 +16,30 @@ class MasterViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        let urlString = "https://api.whitehouse.gov/v1/petitions.json?limit=100"
+        
+        if let url = NSURL(string: urlString) {
+            if let data = try? NSData(contentsOfURL: url, options: []) {
+                let json = JSON(data: data)
+                
+                if json["metadata"]["responseInfo"]["status"].intValue == 200 {
+                    parseJSON(json)
+                }
+            }
+        }
+    }
+    
+    func parseJSON(json: JSON) {
+        for result in json["results"].arrayValue {
+            let title = result["title"].stringValue
+            let body = result["body"].stringValue
+            let sigs = result["signatureCount"].stringValue
+            let obj = ["title": title, "body": body, "sigs": sigs]
+            objects.append(obj)
+        }
+        
+        tableView.reloadData()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -58,7 +81,8 @@ class MasterViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
 
         let object = objects[indexPath.row] as! NSDate
-        cell.textLabel!.text = object.description
+        cell.textLabel!.text = object["title"]
+        cell.detailTextLabel!.text = object["body"]
         return cell
     }
 
